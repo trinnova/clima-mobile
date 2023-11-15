@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, TextInput, StyleSheet, TouchableWithoutFeedback, Animated } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-const Formulario = () => {
+const Formulario = (
+    {
+        busqueda,
+        guardarBusqueda,
+    }
+) => {
+    const { pais, ciudad} = busqueda;
 
     const [ animacionBoton ] = useState(new Animated.Value(1));
 
@@ -30,7 +36,9 @@ const Formulario = () => {
         <View style={styles.formulario}>
             <View>
                 <TextInput 
+                    value={ciudad}
                     style={styles.input}
+                    onChangeText={ciudad => guardarBusqueda( {...busqueda, ciudad}) }
                     placeholder="Ciudad"
                     placeholderTextColor="#666"
                 />
@@ -38,7 +46,9 @@ const Formulario = () => {
 
             <View>
                 <Picker
+                    selectedValue={pais}
                     style={{ height: 120, backgroundColor: '#FFF' }}
+                    onValueChange={ pais => guardarBusqueda( {...busqueda, pais} ) }
                 >
                     <Picker.Item label="-- Seleccione un País --" value="" />
                     <Picker.Item label="Estados Unidos" value="US" />
