@@ -9,3 +9,6 @@
 ## Tecnologías
 - React Native
 - API Clima
+- PICKER
+    - `npm i @react-native-picker/picker`
+    
