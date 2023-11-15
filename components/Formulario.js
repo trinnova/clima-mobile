@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, TextInput, StyleSheet, TouchableWithoutFeedback, Animated } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 const Formulario = () => {
+
     const [ animacionBoton ] = useState(new Animated.Value(1));
 
     const animacionEntrada = () => {
-        console.log('Entrada');
+        Animated.spring( animacionBoton, {
+            toValue: .75,
+            useNativeDriver: true
+        }).start();
     }
 
     const animacionSalida = () => {
         console.log('Salida');
     }
+
+    const estiloAnimacion = {
+        transform: [ { scale: animacionBoton } ]
+    };
 
     return (
         <View style={styles.formulario}>
@@ -42,9 +50,9 @@ const Formulario = () => {
                 onPressIn={ () => animacionEntrada() }
                 onPressOut={ () => animacionSalida() }
             >
-                <View style={styles.btnBuscar}>
+                <Animated.View style={[styles.btnBuscar, estiloAnimacion]}>
                     <Text style={styles.textoBuscar}>Buscar Clima</Text>
-                </View>
+                </Animated.View>
             </TouchableWithoutFeedback>
         </View>
     )
