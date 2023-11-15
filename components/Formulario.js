@@ -14,7 +14,12 @@ const Formulario = () => {
     }
 
     const animacionSalida = () => {
-        console.log('Salida');
+        Animated.spring( animacionBoton, {
+            toValue: 1,
+            friction: 4,
+            tension: 30,
+            useNativeDriver: true
+        }).start();
     }
 
     const estiloAnimacion = {
