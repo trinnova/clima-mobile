@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, TextInput, StyleSheet, TouchableWithoutFeedback, Animated } from 'react-native';
+import { Text, View, TextInput, StyleSheet, TouchableWithoutFeedback, Animated, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 const Formulario = (
@@ -11,6 +11,25 @@ const Formulario = (
     const { pais, ciudad} = busqueda;
 
     const [ animacionBoton ] = useState(new Animated.Value(1));
+
+    const consultarClima = () => {
+        if (pais.trim() === '' || ciudad.trim() === '')
+        {
+            mostrarAlerta();
+            return;
+        }
+    };
+
+    const mostrarAlerta = () => {
+        Alert.alert
+        (
+            'Error',
+            'Agrega una ciudad o país',
+            [
+                { text: 'Entendido'}
+            ]
+        )
+    };
 
     const animacionEntrada = () => {
         Animated.spring( animacionBoton, {
@@ -64,6 +83,7 @@ const Formulario = (
             <TouchableWithoutFeedback
                 onPressIn={ () => animacionEntrada() }
                 onPressOut={ () => animacionSalida() }
+                onPress={ () => consultarClima() }
             >
                 <Animated.View style={[styles.btnBuscar, estiloAnimacion]}>
                     <Text style={styles.textoBuscar}>Buscar Clima</Text>
@@ -102,4 +122,4 @@ const styles = StyleSheet.create
     }
 );
 
-export default Formulario
+export default Formulario;
