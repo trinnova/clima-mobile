@@ -8,6 +8,7 @@ import {
   Alert,
 } from 'react-native';
 import Formulario from './components/Formulario';
+import Clima from './components/Clima';
 
 const App = () => {
 
@@ -28,9 +29,17 @@ const App = () => {
       if (consultar)
       {
         const appId = 'b3b0e54050ad6076822c45e95401fcf6';
+        /*
+          https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 
-        // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
-        const url = `http;//api.openwathermap.org/data/2.5/weather?q=${ciudad}, ${pais}&appid=${appId}`;
+          La temperatura tambien está disponible en unidades Fahrenheit, Celsius y Kelvin.
+          Para temperatura en grados Fahrenheit use unidades = imperial
+          Para la temperatura en grados Celsius = metric
+          La temperatura en Kelvin se usa de forma predeterminada, no es necesario usar el parámetro de unidades en la llamada API
+          http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&units=metric&appid=${apiKey}
+        */
+        
+          const url = `http;//api.openwathermap.org/data/2.5/weather?q=${ciudad}, ${pais}&appid=${appId}`;
 
         try
         {
@@ -73,6 +82,10 @@ const App = () => {
       <TouchableWithoutFeedback onPress={ () => ocultarTeclado() } >
         <View style={styles.app}>
           <View style={styles.contenido}>
+            <Clima 
+              resultado={resultado}
+            />
+
             <Formulario
               busqueda={busqueda}
               guardarBusqueda={guardarBusqueda}
