@@ -6,6 +6,7 @@ const Formulario = (
     {
         busqueda,
         guardarBusqueda,
+        guardarConsultar,
     }
 ) => {
     const { pais, ciudad} = busqueda;
@@ -18,6 +19,9 @@ const Formulario = (
             mostrarAlerta();
             return;
         }
+
+        // Consultar la API
+        guardarConsultar(true);
     };
 
     const mostrarAlerta = () => {
