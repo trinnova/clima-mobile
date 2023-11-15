@@ -1,15 +1,25 @@
-import React from 'react';
-import { Text, View, TextInput, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, TextInput, StyleSheet, TouchableWithoutFeedback, Animated } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 const Formulario = () => {
+    const [ animacionBoton ] = useState(new Animated.Value(1));
+
+    const animacionEntrada = () => {
+        console.log('Entrada');
+    }
+
+    const animacionSalida = () => {
+        console.log('Salida');
+    }
+
     return (
         <View style={styles.formulario}>
             <View>
                 <TextInput 
+                    style={styles.input}
                     placeholder="Ciudad"
                     placeholderTextColor="#666"
-                    style={styles.input}
                 />
             </View>
 
@@ -28,8 +38,11 @@ const Formulario = () => {
                 </Picker>
             </View>
 
-            <TouchableWithoutFeedback>
-                <View>
+            <TouchableWithoutFeedback
+                onPressIn={ () => animacionEntrada() }
+                onPressOut={ () => animacionSalida() }
+            >
+                <View style={styles.btnBuscar}>
                     <Text style={styles.textoBuscar}>Buscar Clima</Text>
                 </View>
             </TouchableWithoutFeedback>
@@ -57,7 +70,7 @@ const styles = StyleSheet.create
         },
 
         textoBuscar: {
-            color: 'FFF',
+            color: '#FFF',
             fontWeight: 'bold',
             textTransform: 'uppercase',
             textAlign: 'center',
