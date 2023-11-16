@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   TouchableWithoutFeedback,
   Keyboard,
@@ -38,7 +37,7 @@ const App = () => {
           http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&units=metric&appid=${apiKey}
         */
         
-          const url = `http;//api.openwathermap.org/data/2.5/weather?q=${ciudad}, ${pais}&appid=${appId}`;
+          const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`;
 
         try
         {
